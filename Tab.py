@@ -68,15 +68,6 @@ class Tab:
         if snap != False and (type(snap) is not int or not (1 <= snap <= self.__snaps_per_beat)):
             raise ValueError(f"Tab.add - Invalid argument: snap must be an integer in range [1, {self.__snaps_per_beat}]")
 
-        # by default use the next available snap
-        '''
-            beat = false
-            snap = false
-
-            beat = true
-            snap = false
-        '''
-
         # Need to find next beat/snap
         if beat == False:
             beats = self.__music.keys()
@@ -151,7 +142,7 @@ class Tab:
                             res += self.get(cur_beat, snap + 1, string)
 
                         cur_beat += 1
-                    res += "|"
+                    res += self.__bar_sep
                 res += '\n'
             
             line_beat = cur_beat
